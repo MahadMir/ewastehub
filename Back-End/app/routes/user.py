@@ -1,7 +1,17 @@
 from . import user_bp
-from flask import jsonify
+from flask import jsonify, request
 from .. import mongo
 from bson import ObjectId
+import sys
+from jsonschema import validate, ValidationError
+from ..schemas import get_user_collection_schema
+
+def check_valid_schema(document, schema):
+    try:
+        validate(document, schema)
+        return True
+    except:
+        return False
 
 def convert_document(document):
     """Convert ObjectId to string for JSON serialization."""
@@ -23,7 +33,16 @@ def users():
 
 @user_bp.route('/users/new', methods=['POST'])
 def create_user():
-    pass
+    try:
+        data = request.json
+        valid_schema = check_valid_schema(data.items, get_user_collection_schema())
+        if valid_schema == True:
+            mongo.db.userCollection.insert_one(data)
+            return "passed", 200
+        else:
+            return "failed", 400
+    except Exception as e:
+        return f'Error: {e}'
 
 @user_bp.route('/users/<int:user_id>', methods=['GET'])
 def get_user_details():
