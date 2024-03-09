@@ -20,10 +20,29 @@ def users():
             return jsonify(data)
     except Exception as e:
         return f'Error fetching data: {e}'
+    
+@user_bp.route('/customers', methods=['GET'])
+def customers():
+    try:
+        cursor = mongo.db.user_collection.find()
+        data = [convert_document(document) for document in cursor]
+        data = [x for x in data if x["role"] == "customer"]
+        if data:
+            return jsonify(data)
+    except Exception as e:
+        return f'Error fetching data: {e}'
 
 @user_bp.route('/users/new', methods=['POST'])
 def create_user():
-    pass
+    try:
+        cursor = mongo.db.user_collection.find()
+        data = [convert_document(document) for document in cursor]
+        data = [x for x in data if x["role"] == "customer"]
+        if data:
+            return jsonify(data)
+    except Exception as e:
+        return f'Error fetching data: {e}'
+    
 
 @user_bp.route('/users/<int:user_id>', methods=['GET'])
 def get_user_details():
