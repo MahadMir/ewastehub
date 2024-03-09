@@ -10,7 +10,8 @@ app.config.from_object(Config)
 mongo = PyMongo(app)
 CORS(app)
 
-from app.routes import auth_bp, user_bp
+from app.routes import auth_bp, user_bp, device_bp
 
 app.register_blueprint(auth_bp, url_prefix='/auth')
 app.register_blueprint(user_bp, url_prefix='/api')
+app.register_blueprint(device_bp, url_prefix='/api')

@@ -1,4 +1,4 @@
-from . import user_bp
+from . import device_bp
 from flask import jsonify, request
 from .. import mongo
 from flask_pymongo import ObjectId
@@ -12,7 +12,7 @@ def convert_document(document):
     return document
 
 
-@user_bp.route('/devices', methods=['GET'])
+@device_bp.route('/devices', methods=['GET'])
 def devices():
     try:
         cursor = mongo.db.device_collection.find()
@@ -23,7 +23,7 @@ def devices():
         return f'Error fetching data: {e}'
 
 
-@user_bp.route('/devices/new', methods=['POST'])
+@device_bp.route('/devices/new', methods=['POST'])
 def create_devices():
     try:
         data = request.json
@@ -38,7 +38,7 @@ def create_devices():
         return f'Error fetching data: {e}'
     
 
-@user_bp.route('/devices/<device_id>', methods=['GET'])
+@device_bp.route('/devices/<device_id>', methods=['GET'])
 def get_device_details(device_id):
     try:
         deviceid_dict = {"device_id": device_id}
@@ -49,7 +49,7 @@ def get_device_details(device_id):
         return f'Error fetching data: {e}'
 
 
-@user_bp.route('/devices/<device_id>/edit', methods=['PUT'])
+@device_bp.route('/devices/<device_id>/edit', methods=['PUT'])
 def edit_device(device_id):
     try:
         data = request.get_json()
@@ -71,7 +71,7 @@ def edit_device(device_id):
         return f'Error: {e}'
     
 
-@user_bp.route('/devices/<device_id>/delete', methods=['GET'])
+@device_bp.route('/devices/<device_id>/delete', methods=['GET'])
 def delete_device(device_id):
     try:
         device_dict = {"device_id": device_id}
