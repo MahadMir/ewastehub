@@ -20,7 +20,11 @@ const AdminStaffPage = () => {
                         return true
                     }
                 })
-                setStaffData(filteredResult)
+                const mappedResult = filteredResult.map((item)=>{
+                    const {_id, ...rest} = item
+                    return rest
+                })
+                setStaffData(mappedResult)
             } catch (error) {
                 throw error; // Throw the error for handling in the component
             }
