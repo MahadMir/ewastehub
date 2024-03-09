@@ -42,7 +42,7 @@ const AdminStaffTable = ({ staffList }) => {
         <tbody>
           {staffList.map((staff) => {
             const orderRoles = (role) => {
-                const roleList = ["admin", "customer", "staff"];
+                const roleList = ["admin", "staff"];
                 const currentStaffRole = roleList.filter((roleMem)=>{
                     if (role === roleMem){
                         return false

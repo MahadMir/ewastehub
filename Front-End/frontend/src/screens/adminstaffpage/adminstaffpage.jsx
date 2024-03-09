@@ -12,7 +12,15 @@ const AdminStaffPage = () => {
             try {
                 const response = await axios.get('http://127.0.0.1:5000/api/users');
                 const result = await response.data; // Return the response data
-                setStaffData(result)
+                const filteredResult = await result.filter((user)=>{
+                    if(user.role === 'customer'){
+                        return false
+                    }
+                    else{
+                        return true
+                    }
+                })
+                setStaffData(filteredResult)
             } catch (error) {
                 throw error; // Throw the error for handling in the component
             }

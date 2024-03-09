@@ -41,11 +41,10 @@ def create_user():
 @user_bp.route('/users/<user_id>', methods=['GET'])
 def get_user_details(user_id):
     try:
-        cursor = mongo.db.user_collection.find()
-        data = [convert_document(document) for document in cursor]
-        data = [x for x in data if x["user_id"] == user_id]
-        if data:
-            return jsonify(data[0]), 200
+        userid_dict = {"user_id": user_id}
+        res=mongo.db.user_collection.find_one(userid_dict)
+        if res != None:
+            return jsonify(convert_document(res)), 200
     except Exception as e:
         return f'Error fetching data: {e}'
 
