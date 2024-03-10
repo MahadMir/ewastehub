@@ -5,6 +5,7 @@ import Login from "./screens/login/login";
 import Registration from "./screens/registration/registration";
 import LandingPage from "./screens/landingpage/landingpage";
 import AdminStaffPage from './screens/adminstaffpage/adminstaffpage';
+import AdminOrderPage from './screens/adminorderpage/adminorderpage';
 
 function App() {
     return (
@@ -15,6 +16,7 @@ function App() {
                     <Route path="/login" element={<Login />} />
                     <Route path="/" element={<LandingPage />} />
                     <Route path="/staffadmin" element={<AdminStaffPage />} />
+                    <Route path="/orderadmin" element={<AdminOrderPage />} />
                 </Routes>
             </div>
         </BrowserRouter>

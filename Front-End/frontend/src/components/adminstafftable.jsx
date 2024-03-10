@@ -1,11 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import axios from "axios";
 
 
 const AdminStaffTable = ({ staffList }) => {
-
-
-  const [selectedUser, setSelected] = useState({})
 
 
   const curriedHandleSelectChange = (staff) => {

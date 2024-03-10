@@ -58,7 +58,7 @@ def edit_user(user_id):
             user_dict[k] = v
 
         search_criteria = {'user_id': data.get('user_id')}
-        
+
 
         res = mongo.db.user_collection.update_one(search_criteria, {'$set': data})
         
@@ -93,4 +93,13 @@ def delete_user(user_id):
     except Exception as e:
         return f'Error: {e}'
     
+@user_bp.route('/users/<user_id>/devices', methods=['GET'])
+def get_user_devices(user_id):
+    try:
+        user_dict = {"user_id": user_id}
+        devices_to_find = mongo.db.order_collection.find_one(user_dict)
+        if devices_to_find  != None:
+            return jsonify(convert_document(devices_to_find)), 200
 
+    except Exception as e:
+        return f'Error: {e}', 404
