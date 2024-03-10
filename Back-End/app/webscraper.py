@@ -8,7 +8,7 @@ import json
 
 
 
-def itemToBeFound(item, my_css_class):
+def itemToBeFound(item, my_css_class="wrapper-box"):
     try:
         baseUrl = f'https://uk.webuy.com/'
         url = f'https://uk.webuy.com/search?stext={item}'
@@ -58,8 +58,10 @@ def itemToBeFound(item, my_css_class):
 
 
     except Exception as e:
-        print(e)
-        return {}
+        return []
+
+
+
 
 
 

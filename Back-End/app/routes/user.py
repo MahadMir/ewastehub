@@ -3,6 +3,7 @@ from flask import jsonify, request
 from .. import mongo
 from flask_pymongo import ObjectId
 from bson import ObjectId
+from ..webscraper import itemToBeFound
 
 def convert_document(document):
     """Convert ObjectId to string for JSON serialization."""
@@ -103,3 +104,12 @@ def get_user_devices(user_id):
 
     except Exception as e:
         return f'Error: {e}', 404
+    
+
+@user_bp.route('/scraper/cex/<string:device_name>', methods=['GET'])
+def get_device_from_web(device_name):
+    try:
+        return jsonify(itemToBeFound(device_name))
+    except Exception as e:
+        return f'Error: {e}', 404
+
