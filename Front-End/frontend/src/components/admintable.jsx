@@ -7,21 +7,21 @@ const AdminTable = ({ itemList, orderList }) => {
         {/* head */}
         <thead>
           <tr>
-            {itemList.map((item)=>{
-                return(
-                    <th>{item}</th>
-                )
+            {itemList.map((item) => {
+              return <th>{item}</th>;
             })}
           </tr>
         </thead>
         <tbody>
-            {orderList.map((order)=>{
-                return Object.entries(order).map(([key, value]) => {
-                    return(
-                        <td>{value}</td>
-                    )
-                })
-            })}
+          {orderList.map((order) => {
+            return (
+              <tr>
+                {Object.entries(order).map(([key, value]) => {
+                  return <td>{value}</td>;
+                })}
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>
