@@ -1,9 +1,10 @@
 from . import user_bp
-from flask import jsonify, request
+from flask import jsonify, request, url_for
 from .. import mongo
 from flask_pymongo import ObjectId
 from bson import ObjectId
 from ..webscraper import itemToBeFound
+import requests
 
 def convert_document(document):
     """Convert ObjectId to string for JSON serialization."""
@@ -113,3 +114,18 @@ def get_device_from_web(device_name):
     except Exception as e:
         return f'Error: {e}', 404
 
+@user_bp.route('/users/<user_id>/devices/<device_id>/flag', methods=["GET"])
+def flag_user_device(user_id, device_id):
+    try:
+        user_dict = {"device_id": device_id}
+        devices_to_find = mongo.db.device_collection.find_one(user_dict)
+        if devices_to_find != None:
+            device = convert_document(devices_to_find)
+            device['flag'] = not device['flag']
+            device.pop("_id")
+
+            url = url_for('device.edit_device', device_id=device_id)
+            return jsonify({"url": url})
+
+    except Exception as e:
+        return f'Error: {e}', 404
