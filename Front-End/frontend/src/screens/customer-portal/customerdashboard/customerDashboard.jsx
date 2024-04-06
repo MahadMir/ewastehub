@@ -18,6 +18,10 @@ export const CustomerDashboard = () => {
 
     const [orders, setOrders] = useState([]);
     const [orderStats, setOrderStats] = useState([]);
+    const [sortChoice, setSortChoice] = useState();
+    const [categoryChoice, setCategoryChoice] = useState();
+    const [deviceTypeChoice, setDeviceTypeChoice] = useState();
+
 
     const {loggedUser, updateLoggedUser} = useStoreLogin();
 
@@ -179,29 +183,32 @@ export const CustomerDashboard = () => {
                 {/* Container to center align the div */}
                 <div className="p-4 flex flex-row items-center justify-between">
                     <div id="sort" className="mr-2 pr-10 justify-start">
-                        <select className="select select-bordered max-w-xs">
+                        <select value={sortChoice} onChange={(e) => setSortChoice(e.target.value)}
+                                className="select select-bordered max-w-xs">
                             <option disabled selected>Sort By</option>
-                            <option>Date Added</option>
-                            <option>Price (Ascending)</option>
-                            <option>Price (Descending)</option>
+                            <option value="Date Added">Date Added</option>
+                            <option value="Price Ascending">Price (Ascending)</option>
+                            <option value="Price Descending">Price (Descending)</option>
                         </select>
                     </div>
                     <div id="type" className="mr-2 pr-10 ">
-                        <select className="select select-bordered max-w-xs basis-1/3">
+                        <select value={deviceTypeChoice} onChange={(e) => setDeviceTypeChoice(e.target.value)}
+                                className="select select-bordered max-w-xs basis-1/3">
                             <option disabled selected>Device Type</option>
-                            <option>Tablet</option>
-                            <option>Laptop</option>
-                            <option>Smartphone</option>
-                            <option>Smartwatch</option>
+                            <option value="tablet">Tablet</option>
+                            <option value="laptop">Laptop</option>
+                            <option value="smartphone">Smartphone</option>
+                            <option value="smartwatch">Smartwatch</option>
                         </select>
                     </div>
                     <div id="category" className="mr-60 pr-100">
-                        <select className="select select-bordered max-w-xs basis-1/3">
+                        <select value={categoryChoice} onChange={(e) => setCategoryChoice(e.target.value)}
+                                className="select select-bordered max-w-xs basis-1/3">
                             <option disabled selected>Category</option>
-                            <option>Current</option>
-                            <option>Rare</option>
-                            <option>Recyclable</option>
-                            <option>Unknown</option>
+                            <option value="current">Current</option>
+                            <option value="rare">Rare</option>
+                            <option value="recyclable">Recyclable</option>
+                            <option value="unknown">Unknown</option>
                         </select>
                     </div>
                     <div id="button">
@@ -218,8 +225,24 @@ export const CustomerDashboard = () => {
             <div className="flex items-center justify-center h-full p-4">
                 {/* Container to center align the cards */}
                 <div className="products flex flex-wrap justify-center gap-4 overflow-y-auto">
+
+
+
+
+
                     {/* Vertically scrollable cards with 4 cards in a row */}
-                    {orders.map((order) => (
+                    {orders.sort((a, b) => {
+                        // Default sort by date added
+                        if (sortChoice === 'Price Ascending') {
+                            return a.price - b.price; // Sort by price ascending
+                        } else if (sortChoice === 'Price Descending') {
+                            return b.price - a.price; // Sort by price descending
+                        } else {
+                            // Sort by date added
+                            return new Date(a.date) - new Date(b.date);
+                        }
+                    })
+                        .map((order) => (
                         <div className="card card-compact w-80 bg-base-100 shadow-xl">
                             <figure>
                                 <img

@@ -82,8 +82,9 @@ function TableItem(props) {
             <div className="flex items-center gap-3">
                 <div className="avatar">
                     <div className="w-24 rounded-full">
-                        <img src={props.order['photos'].length > 0 ? props.order['photos'][0] : "https://placehold.co/600x400"}
-                             alt=""></img>
+                        <img
+                            src={props.order['photos'].length > 0 ? props.order['photos'][0] : "https://placehold.co/600x400"}
+                            alt=""></img>
                     </div>
                 </div>
                 <div>
@@ -102,8 +103,14 @@ function TableItem(props) {
         {props.order.status === "Pending"
             ? <td className="badge badge-warning badge-outline">{props.order.status}</td>
             : <td className="badge badge-success badge-outline">{props.order.status}</td>}
-        <OrderModal orderItem = {props.order} onClick={props.onClick} onClick1={props.onClick1}/>
+        <td>
+            <strong>£ {props.order.price}</strong>
+            <br/>
+
+        </td>
+        <OrderModal orderItem={props.order} onClick={props.onClick} onClick1={props.onClick1}/>
     </tr>;
+
 }
 
 TableItem.propTypes = {
@@ -121,14 +128,37 @@ export function OrderTable(props) {
                 <th>Device Details</th>
                 <th>Order Details</th>
                 <th>Current Status</th>
+                <th>Price</th>
                 <th></th>
             </tr>
             </thead>
             <tbody>
             {/* row 1 */}
-            {props.tableData.map(order => (
-            <TableItem stateTwo={props.stateTwo} order = {order} onClick={props.onClick} onClick1={props.onClick1}/>
-            ))}
+            {props.tableData
+                .sort((a, b) => {
+                    // Default sort by date added
+                    if (props.sortChoice === 'Price Ascending') {
+                        return a.price - b.price; // Sort by price ascending
+                    } else if (props.sortChoice === 'Price Descending') {
+                        return b.price - a.price; // Sort by price descending
+                    } else {
+                        // Sort by date added
+                        return new Date(a.date) - new Date(b.date);
+                    }
+                })
+                .map(order => (
+                    <TableItem
+                        sortChoice={props.sortChoice}
+                        categoryChoice={props.categoryChoice}
+                        deviceTypeChoice={props.deviceTypeChoice}
+                        stateTwo={props.stateTwo}
+                        order={order}
+                        onClick={props.onClick}
+                        onClick1={props.onClick1}
+                    />
+                ))
+            }
+
 
 
             </tbody>
