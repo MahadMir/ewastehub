@@ -16,7 +16,7 @@ const StaffTable = ({ staffList }) => {
 
     const changeRole = async (staff) => {
         try{
-            const response = await axios.put(`http://127.0.0.1:5000/api/users/${staff.user_id}/edit`, staff)
+            const response = await axios.put(`http://127.0.0.1:5000/api/users/staff`, staff)
             const result = await response.data
             console.log('Data updated successfully:', result)
         } catch (error){
@@ -35,8 +35,20 @@ const StaffTable = ({ staffList }) => {
                     <th>Email</th>
                     <th>Contact</th>
                     <th>staff_id</th>
+                    <th>User_id</th>
                 </tr>
                 </thead>
+                <tbody>
+                {staffList.map(staff => (
+                    <tr key={staff.staff_id}>
+                        <td>{staff.name}</td>
+                        <td>{staff.email}</td>
+                        <td>{staff.contact}</td>
+                        <td>{staff._id}</td>
+                        <td>{staff.user_id}</td>
+                    </tr>
+                ))}
+                </tbody>
             </table>
         </div>
     );
