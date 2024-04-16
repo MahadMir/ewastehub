@@ -1,10 +1,9 @@
 import React from 'react';
 import axios from "axios";
-
+import {Link, useNavigate} from "react-router-dom";
 
 const StaffTable = ({ staffList }) => {
-
-
+    const navigate = useNavigate();
     const curriedHandleSelectChange = (staff) => {
         const handleSelectChange = (event) => {
             const newVal = event.target.value
@@ -27,6 +26,18 @@ const StaffTable = ({ staffList }) => {
 
     return (
         <div className="overflow-x-auto">
+            <div className="row">
+                <div className="label">Staff</div>
+                <button className="add-button" onClick={() => {
+                    navigate("/staff/addstaff")
+                }}> + Add Staff</button>
+            </div>
+            <br/>
+            <div className="search-bar">
+                <input type="text" placeholder="Search"/>
+                <button className="search-button">Search</button>
+            </div>
+            <br/>
             <table className="table">
                 {/* head */}
                 <thead>

@@ -14,6 +14,7 @@ import AdminDashboard from './screens/admindashboard/admindashboard';
 import AdminUsers from './screens/adminuserspage/adminusers';
 import StaffInfo from "./screens/staffdashboard/staffinfo";
 import UserInfo from "./screens/staffdashboard/userinfo";
+import AddStaff from "./screens/staffdashboard/addstaff";
 
 function App() {
     return (
@@ -23,6 +24,7 @@ function App() {
                     <Route path="/sdashboard" element={<Sdashboard/>} />
                     <Route path="/sdashboard/staffinfo" element={<StaffInfo />} />
                     <Route path="/sdashboard/userinfo" element={<UserInfo/>} />
+                    <Route path="/staff/addstaff" element={<AddStaff/>} />
                     <Route path="/registration" element={<Registration />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/" element={<LandingPage />} />
