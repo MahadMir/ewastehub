@@ -1,0 +1,30 @@
+.hovered {
+    transform: scale(1.0);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 1);/*
+    background-color: #4CAF50;*/
+}
+.title:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+}
+.stat:hover .stat-title a {
+    color: #4CAF50; /* Change the color to white on hover */
+}
+/*.stats:hover .stat-title a {
+    color: black;
+}*/
+.row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.label {
+    padding-left: 50px;
+    /* Add styles for the label */
+}
+
+.add-button {
+    /* Add styles for the button */
+}
+

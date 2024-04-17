@@ -1,7 +1,7 @@
 import { TiThMenu } from "react-icons/ti";
 import {Link, useNavigate} from "react-router-dom";
 import React from "react";
-import StaffInfo from "../screens/staffdashboard/staffinfo";
+import StaffInfo from "../screens/staffdashboard/StaffInfoPage/staffinfo";
 
 export const StaffDrawer = () => {
     /*return (

@@ -9,12 +9,12 @@ import ProfilePage from "./screens/profile/profile";
 import EditOrder from "./screens/customer-portal/editorder/editorder";
 import AdminStaffPage from "./screens/adminstaffpage/adminstaffpage";
 import AdminOrderPage from "./screens/adminorderpage/adminorderpage";
-import Sdashboard from "./screens/staffdashboard/sdashboard";
+import Sdashboard from "./screens/staffdashboard/StaffDashboard/sdashboard";
 import AdminDashboard from './screens/admindashboard/admindashboard';
 import AdminUsers from './screens/adminuserspage/adminusers';
-import StaffInfo from "./screens/staffdashboard/staffinfo";
-import UserInfo from "./screens/staffdashboard/userinfo";
-import AddStaff from "./screens/staffdashboard/addstaff";
+import StaffInfo from "./screens/staffdashboard/StaffInfoPage/staffinfo";
+import UserInfo from "./screens/staffdashboard/UserInfoPage/userinfo";
+import AddStaff from "./screens/staffdashboard/StaffInfoPage/AddStaff/addstaff";
 
 function App() {
     return (

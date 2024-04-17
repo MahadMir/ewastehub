@@ -27,15 +27,16 @@ const StaffTable = ({ staffList }) => {
     return (
         <div className="overflow-x-auto">
             <div className="row">
-                <div className="label">Staff</div>
+                <h1 className="label">Staff</h1>
+                {/*<div className="label">Staff</div>*/}
                 <button className="add-button" onClick={() => {
                     navigate("/staff/addstaff")
                 }}> + Add Staff</button>
             </div>
             <br/>
-            <div className="search-bar">
-                <input type="text" placeholder="Search"/>
-                <button className="search-button">Search</button>
+            <div className="search-bar" style={{ display: 'flex', alignItems: 'center' }}>
+                <input type="text" placeholder="Search" style={{margin: '5px', alignItems: 'center'}}/>
+                <button className="search-button" style={{marginBottom: '2px'}}>Search</button>
             </div>
             <br/>
             <table className="table">
