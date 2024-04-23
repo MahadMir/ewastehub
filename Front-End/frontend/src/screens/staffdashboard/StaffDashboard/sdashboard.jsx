@@ -1,13 +1,21 @@
 import React, { useState } from 'react';
 import './sdashboard.css';
 import StaffNavbar from "../../../components/staffNavbar";
-import AdminDashboardStats from "../../components/admindashboardstats";
-import AdminDashboardTable from "../../components/admindashboardtable";
+import AdminDashboardStats from "../../../components/admindashboardstats";
+import AdminDashboardTable from "../../../components/admindashboardtable";
+import axios from "axios";
+import {  useEffect } from "react";
+import AdminDashBoardDeviceType from "../../../components/admindashboarddevicetype";
+import AdminDashboardStatusCount from "../../../components/admindashboardstatuscount";
+
+
 
 const Sdashboard = () => {
     const [isHovered, setIsHovered] = useState(false);
     const [numberOfStaff, setNumberOfStaff] = useState(0);
     const [numberOfProcessedOrders, setNumberOfProcessedOrders] = useState(0);
+    const [orders, setOrders] = useState([]);
+    const [changed, setChanged] = useState(false);
     const [numUsers, setNumUsers] = useState([]);
 
     useEffect(() => {
@@ -85,8 +93,9 @@ const Sdashboard = () => {
     return (
         <div>
             <StaffNavbar/>
-            <div className= "flex flex-col items-center justify-center"><h1 className="text-2xl font-bold mb-4">Admin Dashboard</h1></div>
-
+            <div className="flex flex-col items-center justify-center">
+                <h1 className="text-2xl font-bold mb-4">Staff Dashboard</h1>
+            </div>
             <div className="divider"></div>
             <AdminDashboardStats
                 numberOfStaff={numberOfStaff}
@@ -96,11 +105,22 @@ const Sdashboard = () => {
             <div className="divider"></div>
             <div className="flex w-full">
                 <div className="grid flex-grow  bg-base-300 rounded-box place-items-center">
-                    <AdminDashboardTable orders={orders}></AdminDashboardTable>
+                    <h1>Last Five Orders</h1>
+                    <AdminDashboardTable
+                        orders={orders}
+                        changed={setChanged}
+                        changevar={changed}
+                    ></AdminDashboardTable>
                 </div>
                 <div className="divider divider-horizontal"></div>
-                <div className="grid h-20 flex-grow  bg-base-300 rounded-box place-items-center">
-                    content
+
+                <div className="">
+                    <div className="m-6">
+                        <AdminDashBoardDeviceType changed={changed} className="m-20"/>
+                    </div>
+                    <div className="m-6">
+                        <AdminDashboardStatusCount changed={changed} className="m-20"/>
+                    </div>
                 </div>
             </div>
         </div>

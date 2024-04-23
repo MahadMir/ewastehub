@@ -16,8 +16,6 @@ import StaffInfo from "./screens/staffdashboard/StaffInfoPage/staffinfo";
 import UserInfo from "./screens/staffdashboard/UserInfoPage/userinfo";
 import AddStaff from "./screens/staffdashboard/StaffInfoPage/AddStaff/addstaff";
 import AddUser from "./screens/staffdashboard/UserInfoPage/AddUser/adduser";
-import StaffInfo from "./screens/staffdashboard/staffinfo";
-import UserInfo from "./screens/staffdashboard/userinfo";
 import {Orders} from "./screens/Order/orders";
 import AdminDashboardDrawer from './screens/admindashboard/admindashboarddrawer';
 import AdminStaffDrawer from './screens/adminstaffpage/adminstaffdrawer';
