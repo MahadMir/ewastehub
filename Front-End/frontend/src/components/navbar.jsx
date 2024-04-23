@@ -2,8 +2,10 @@ import React from 'react';
 import {Link, useNavigate} from "react-router-dom";
 import {Drawer} from "./drawer";
 import {resetPersistenceStorage, useStoreLogin} from "../stores/store-login";
+import { TiThMenu } from "react-icons/ti";
 
-const Navbar = () => {
+
+const Navbar = ({updateToggle}) => {
     const navigate = useNavigate();
 
 
@@ -11,12 +13,12 @@ const Navbar = () => {
 
     const {loggedUser, updateLoggedUser} = useStoreLogin();
     return (
-        <div className="navbar bg-base-100">
+        <div className="navbar bg-green-500 text-primary-content">
             <div className="flex-none">
-                <Drawer/>
+                <TiThMenu onClick={updateToggle}></TiThMenu>
             </div>
             <div className="flex-1">
-                <Link className="btn btn-ghost text-xl" to="/">eWaste</Link>
+                <Link className="btn btn-link text-xl" to="/">eWaste</Link>
             </div>
             {loggedUser.user_id
                 ? <div className="flex-none">
@@ -24,7 +26,7 @@ const Navbar = () => {
                         resetPersistenceStorage()
                         updateLoggedUser({})
                         navigate("/")
-                    }} className="btn btn-square btn-ghost">
+                    }} className="btn btn-link text-xl">
                         Logout
                     </button>
                 </div>

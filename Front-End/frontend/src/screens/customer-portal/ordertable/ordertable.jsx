@@ -2,12 +2,29 @@ import * as PropTypes from "prop-types";
 import Navbar from "../../../components/navbar";
 import CustomerNavbar from "../../../components/customerNavbar";
 import {Link, useNavigate} from "react-router-dom";
+import { useHistory } from 'react-router-dom';
+
 
 function OrderModal(props) {
+    const navigate = useNavigate()
+
+    function redirectToWebuy(searchString) {
+        // Encode the search string to make it URL-safe
+        const encodedSearchString = encodeURIComponent(searchString);
+
+        // Construct the final URL with the encoded search string as a query parameter
+        const finalURL = `https://uk.webuy.com/search?stext=${encodedSearchString}`;
+
+        // Redirect the user to the final URL
+        window.open(finalURL, '_blank');
+    }
+
+
+
     return <th>
         {/* You can open the modal using document.getElementById('ID').showModal() method */}
-        <button className="btn btn-ghost" onClick={props.onClick}>Details</button>
-        <dialog id="my_modal_3" className="modal">
+        <button className="btn btn-ghost" onClick={() => document.getElementById(`${props.orderItem.order_id}`).showModal()}>Details</button>
+        <dialog id= {props.orderItem.order_id} className="modal">
             <div className="modal-box">
                 <form method="dialog">
                     {/* if there is a button in form, it will close the modal */}
@@ -16,9 +33,13 @@ function OrderModal(props) {
                     </button>
                 </form>
                 <div className="bg-base-100 shadow-xl">
-                    <figure><img
-                        src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
-                        alt="Shoes"/></figure>
+                    <figure>
+                        <div>
+                            <img
+                                src={props.orderItem['photos'].length > 0 ? props.orderItem['photos'][0] : "https://placehold.co/600x400"}
+                                alt=""></img>
+                        </div>
+                    </figure>
                     <div className="card-body">
                         <h2 className="card-title">
                             {props.orderItem.device_name}
@@ -28,9 +49,19 @@ function OrderModal(props) {
                         <p>Category: {props.orderItem.classification}</p>
                         <p>Date of Order: {props.orderItem.date}</p>
                         <p>Price: {props.orderItem.price}</p>
+                        <p>Additional Service: {props.orderItem.service_name}</p>
+
                         <div className="card-actions justify-end">
-                            <button onClick={props.onClick1} className="btn btn-outline">Edit Device
+                            <button onClick={() => {
+                                navigate('/customer/editorder', {state: props.orderItem});
+                            }} className="btn btn-outline">Edit Device
                                 Details
+                            </button>
+                        </div>
+                        <div className="card-actions justify-end">
+                            <button onClick={() => {
+                                redirectToWebuy(props.orderItem.device_name)
+                            }} className="btn btn-outline">3rd Party Listing
                             </button>
                         </div>
                     </div>
@@ -50,9 +81,9 @@ function TableItem(props) {
         <td>
             <div className="flex items-center gap-3">
                 <div className="avatar">
-                    <div className="mask mask-squircle w-12 h-12">
-                        <img src="/tailwind-css-component-profile-2@56w.png"
-                             alt="Avatar Tailwind CSS Component"/>
+                    <div className="w-24 rounded-full">
+                        <img src={props.order['photos'].length > 0 ? props.order['photos'][0] : "https://placehold.co/600x400"}
+                             alt=""></img>
                     </div>
                 </div>
                 <div>

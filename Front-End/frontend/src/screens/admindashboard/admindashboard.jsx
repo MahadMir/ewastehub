@@ -3,12 +3,20 @@ import Navbar from "../../components/navbar";
 import React, { useState, useEffect } from "react";
 import AdminDashboardStats from "../../components/admindashboardstats";
 import AdminDashboardTable from "../../components/admindashboardtable";
+import AdminDashboardUsersCount from "../../components/admindashboardusercount";
+import AdminDashboardOrdersGraph from "../../components/admindashboardordersgraph";
+import AdminDashBoardDeviceType from "../../components/admindashboarddevicetype";
+import AdminDashboardStatusCount from "../../components/admindashboardstatuscount";
+import { useStoreLogin } from "../../stores/store-login";
+import { Navigate } from "react-router-dom";
 
 const AdminDashboard = () => {
   const [numberOfStaff, setNumberOfStaff] = useState(0);
   const [numberOfProcessedOrders, setNumberOfProcessedOrders] = useState(0);
   const [orders, setOrders] = useState([]);
   const [numUsers, setNumUsers] = useState([]);
+  const [changed, setChanged] = useState(false);
+  const { loggedUser, updateLoggedUser } = useStoreLogin();
 
   useEffect(() => {
     const fetchDataUrl = async (url) => {
@@ -17,7 +25,7 @@ const AdminDashboard = () => {
         const result = res.data;
         return result;
       } catch (error) {
-        throw error;
+        return [];
       }
     };
 
@@ -64,7 +72,7 @@ const AdminDashboard = () => {
       setNumUsers(res[3].length);
     });
 
-     /*const fetchDataInterval = setInterval(() => {
+    /*const fetchDataInterval = setInterval(() => {
       fetchData().then((res) => {
         setNumberOfStaff(res[0].length + res[1].length);
         setNumberOfProcessedOrders(getNumberOfProcessedOrders(res[2]));
@@ -76,29 +84,46 @@ const AdminDashboard = () => {
     return () => clearInterval(fetchDataInterval);*/
   }, []);
 
-  return (
+  if (Object.keys(loggedUser).length === 0) {
+    return(<div></div>)
+  } else {
+    return (
       <div>
-        <Navbar></Navbar>
-        <div className= "flex flex-col items-center justify-center"><h1 className="text-2xl font-bold mb-4">Admin Dashboard</h1></div>
-
+        <div className="flex flex-col items-center justify-center mt-10">
+          <h1 className="text-2xl font-bold mb-4">Admin Dashboard</h1>
+        </div>
+        <AdminDashboardUsersCount />
         <div className="divider"></div>
         <AdminDashboardStats
-            numberOfStaff={numberOfStaff}
-            numberOfUsers={numUsers}
-            numberOfProcessedOrders={numberOfProcessedOrders}
+          numberOfStaff={numberOfStaff}
+          numberOfUsers={numUsers}
+          numberOfProcessedOrders={numberOfProcessedOrders}
         ></AdminDashboardStats>
+        <AdminDashboardOrdersGraph />
         <div className="divider"></div>
         <div className="flex w-full">
           <div className="grid flex-grow  bg-base-300 rounded-box place-items-center">
-            <AdminDashboardTable orders={orders}></AdminDashboardTable>
+            <h1>Last Five Orders</h1>
+            <AdminDashboardTable
+              orders={orders}
+              changed={setChanged}
+              changevar={changed}
+            ></AdminDashboardTable>
           </div>
           <div className="divider divider-horizontal"></div>
-          <div className="grid h-20 flex-grow  bg-base-300 rounded-box place-items-center">
-            content
+
+          <div className="">
+            <div className="m-6">
+              <AdminDashBoardDeviceType changed={changed} className="m-20" />
+            </div>
+            <div className="m-6">
+              <AdminDashboardStatusCount changed={changed} className="m-20" />
+            </div>
           </div>
         </div>
       </div>
-  );
+    );
+  }
 };
 
 export default AdminDashboard;

@@ -19,9 +19,9 @@ export const StaffDrawer = () => {
                     {/* Sidebar content here */}
                     <li><a href='/sdashboard/staffinfo'>Staff Members</a></li>
                     <li><a href='/sdashboard/userinfo'>User Information</a></li>
-                    <li><a>Device Management</a></li>
-                    <li><a>QR Code Management</a></li>
-                    <li><a>Payment Management</a></li>
+                    <li><a href=''>Device Management</a></li>
+                    <li><a href=''>QR Code Management</a></li>
+                    <li><a href=''>Payment Management</a></li>
 
                 </ul>
             </div>
