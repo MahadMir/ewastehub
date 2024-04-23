@@ -27,4 +27,36 @@
 .add-button {
     /* Add styles for the button */
 }
+/*
+.stats {
+    display: flex;
+    flex-wrap: wrap; !* Allow items to wrap to the next line *!
+    justify-content: space-between; !* Distribute items evenly along the main axis *!
+}
 
+.stat-container {
+    width: 100%; !* Set width for each container to ensure each item occupies 20% *!
+    margin-bottom: 20px; !* Add margin between containers *!
+}
+
+.stat {
+    width: 100%; !* Make each stat item occupy the full width of its container *!
+   !* background-color: #f0f0f0;*! !* Example background color *!
+    border-radius: 100px; !* Example border radius *!
+    padding: 30px; !* Example padding *!
+    text-align: center; !* Center-align text *!
+}
+
+.stat-title {
+    font-size: 18px; !* Example font size *!
+    color: #cccccc; !* Example text color *!
+    text-decoration: none; !* Remove underline from links *!
+}
+
+!* Add hover effect *!
+.stat:hover {
+    background-color: #ccc; !* Example background color on hover *!
+    transition: background-color 0.3s ease; !* Smooth transition *!
+}
+
+*/

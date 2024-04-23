@@ -2,7 +2,7 @@ import React from 'react';
 import axios from "axios";
 import {Link, useNavigate} from "react-router-dom";
 
-const StaffTable = ({ staffList }) => {
+const UserTable = ({ staffList }) => {
     const navigate = useNavigate();
     const curriedHandleSelectChange = (staff) => {
         const handleSelectChange = (event) => {
@@ -15,7 +15,7 @@ const StaffTable = ({ staffList }) => {
 
     const changeRole = async (staff) => {
         try{
-            const response = await axios.put(`http://127.0.0.1:5000/api/users/staff`, staff)
+            const response = await axios.put(`http://127.0.0.1:5000/api/users`, staff)
             const result = await response.data
             console.log('Data updated successfully:', result)
         } catch (error){
@@ -27,11 +27,11 @@ const StaffTable = ({ staffList }) => {
     return (
         <div className="overflow-x-auto">
             <div className="row">
-                <h1 className="label">Staff Information</h1>
+                <h1 className="label">User Information</h1>
                 {/*<div className="label">Staff</div>*/}
-                {/*<button className="add-button" onClick={() => {
-                    navigate("/staff/addstaff")
-                }}> + Add Staff</button>*/}
+                <button className="add-button" onClick={() => {
+                    navigate("/user/adduser")
+                }}> + Add User</button>
             </div>
             <br/>
             <div className="search-bar" style={{ display: 'flex', alignItems: 'center' }}>
@@ -66,4 +66,4 @@ const StaffTable = ({ staffList }) => {
     );
 };
 
-export default StaffTable;
+export default UserTable;
