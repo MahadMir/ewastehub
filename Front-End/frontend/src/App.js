@@ -23,6 +23,7 @@ import AdminOrderDrawer from './screens/adminorderpage/adminorderdrawer';
 import AdminUsersDrawer from './screens/adminuserspage/adminusersdrawer';
 import FAQComponent from "./screens/landingpage/faq";
 import OrderSuccess from './components/stripeordersuccess';
+import GoogleLoginSuccess from './components/googleloginsuccess';
 
 function App() {
     return (
@@ -30,6 +31,7 @@ function App() {
             <div>
                 <Routes>
                     <Route path="/ordersuccess/:orderId/" Component={OrderSuccess}/>
+                    <Route path="/googlesuccess/:orderId/" Component={GoogleLoginSuccess}/>
                     <Route path="/sdashboard" element={<Sdashboard/>} />
                     <Route path="/sdashboard/staffinfo" element={<StaffInfo />} />
                     <Route path="/sdashboard/userinfo" element={<UserInfo/>} />
