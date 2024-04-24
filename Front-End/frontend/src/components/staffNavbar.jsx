@@ -3,19 +3,21 @@ import {Link, useNavigate} from "react-router-dom";
 import {StaffDrawer} from "./staffDrawer";
 import {Drawer} from "./drawer";
 import {resetPersistenceStorage, useStoreLogin} from "../stores/store-login";
+import {TiThMenu} from "react-icons/ti";
 
 
-const StaffNavbar = () => {
+const StaffNavbar = ({updateToggle}) => {
     const {loggedUser, updateLoggedUser} = useStoreLogin();
     let navigate = useNavigate()
 
     return (
         <div className="navbar bg-base-100">
             <div className="flex-none">
-                <StaffDrawer/>
+                <TiThMenu onClick={updateToggle}></TiThMenu>
+                {/*<StaffDrawer/>*/}
             </div>
             <div className="flex-1">
-                {<Link className="btn btn-ghost text-xl" to="/">eWaste</Link>}
+                <Link className="btn btn-link text-xl" to="/">eWaste</Link>
             </div>
             {loggedUser.user_id
                 ? <div className="flex-none">

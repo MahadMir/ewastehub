@@ -7,6 +7,7 @@ import axios from "axios";
 import {  useEffect } from "react";
 import AdminDashBoardDeviceType from "../../../components/admindashboarddevicetype";
 import AdminDashboardStatusCount from "../../../components/admindashboardstatuscount";
+import StaffDashboardStats from "../../../components/staffdashboardstats";
 
 
 
@@ -97,11 +98,11 @@ const Sdashboard = () => {
                 <h1 className="text-2xl font-bold mb-4">Staff Dashboard</h1>
             </div>
             <div className="divider"></div>
-            <AdminDashboardStats
-                numberOfStaff={numberOfStaff}
+            <StaffDashboardStats
+                /*numberOfStaff={numberOfStaff}*/
                 numberOfUsers={numUsers}
                 numberOfProcessedOrders={numberOfProcessedOrders}
-            ></AdminDashboardStats>
+            ></StaffDashboardStats>
             <div className="divider"></div>
             <div className="flex w-full">
                 <div className="grid flex-grow  bg-base-300 rounded-box place-items-center">
