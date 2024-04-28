@@ -13,9 +13,8 @@ const StaffNavbar = ({updateToggle}) => {
     return (
         <div className="navbar bg-base-100">
             <div className="flex-none">
-                <TiThMenu onClick={updateToggle}></TiThMenu>
-                {/*<StaffDrawer/>*/}
-            </div>
+                <StaffDrawer/>
+            </div> <br/>
             <div className="flex-1">
                 <Link className="btn btn-link text-xl" to="/">eWaste</Link>
             </div>
