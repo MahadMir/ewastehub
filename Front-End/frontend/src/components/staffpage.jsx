@@ -26,18 +26,7 @@ const StaffTable = ({ staffList }) => {
 
     return (
         <div className="overflow-x-auto">
-            <div className="row">
-                <h1 className="label">Staff Information</h1>
-                {/*<div className="label">Staff</div>*/}
-                {/*<button className="add-button" onClick={() => {
-                    navigate("/staff/addstaff")
-                }}> + Add Staff</button>*/}
-            </div>
-            <br/>
-            <div className="search-bar" style={{ display: 'flex', alignItems: 'center' }}>
-                <input type="text" placeholder="Search" style={{margin: '5px', alignItems: 'center'}}/>
-                <button className="search-button" style={{marginBottom: '2px'}}>Search</button>
-            </div>
+            <h1 className="text-2xl font-bold mb-4 p-4" style={{textAlign: "center"}}>Staff Information</h1>
             <br/>
             <table className="table">
                 {/* head */}

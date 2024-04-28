@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import StaffNavbar from "../../../../components/staffNavbar";
-
+import { useNavigate } from 'react-router-dom';
 
 const AddUser = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [contact, setContact] = useState('');
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -24,6 +25,9 @@ const AddUser = () => {
             setName('');
             setEmail('');
             setContact('');
+
+            // Navigate to the userinfo page
+            navigate('/sdashboard/userinfo');
         } catch (error) {
             console.error('Error adding staff member:', error);
         }
@@ -35,6 +39,7 @@ const AddUser = () => {
             <br/>
             <div className="max-w-md mx-auto p-8 border rounded-md">
                 <h2 className="text-2xl font-bold mb-4">Add User</h2>
+
                 <form onSubmit={handleSubmit}>
                     <div className="mb-4">
                         <label htmlFor="name" className="block mb-1">Name:</label>
@@ -66,7 +71,13 @@ const AddUser = () => {
                             className="form-input w-full border border-gray-300 rounded-md"
                         />
                     </div>
-                    <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Add User</button>
+                    <button className="add-button" onClick={() => {
+                        navigate("/sdashboard/userinfo")
+                    }}> + Add User
+                    </button>
+                    {/*<button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Add
+                        User
+                    </button>*/}
                 </form>
             </div>
         </div>

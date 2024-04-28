@@ -22,8 +22,8 @@ export const StaffDrawer = () => {
                     <li><a href='/sdashboard/staffinfo'>Staff Members</a></li>
                     <li><a href='/sdashboard/userinfo'>User Information</a></li>
                     <li><a href='/sdashboard/managedevice'>Device Management</a></li>
-                    <li><a href=''>QR Code Management</a></li>
-                    <li><a href=''>Payment Management</a></li>
+                    <li><a href='/sdashboard/qrcode'>QR Code Management</a></li>
+                    <li><a href='/sdashboard/payment'>Payment Management</a></li>
 
                 </ul>
             </div>

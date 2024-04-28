@@ -1,14 +1,11 @@
-import {useNavigate} from "react-router-dom";
-import {useEffect, useState} from "react";
-import StaffNavbar from "../../../components/staffNavbar";
-import {useStoreLogin} from "../../../stores/store-login";
+import { useEffect, useState } from "react";
 import axios from "axios";
+import StaffNavbar from "../../../components/staffNavbar";
+import { useStoreLogin } from "../../../stores/store-login";
 
 const ManageDevice = () => {
     let baseUrl = "http://127.0.0.1:5000/api";
     const { loggedUser, updateLoggedUser } = useStoreLogin();
-    let userID = loggedUser.user_id;
-    let navigate = useNavigate();
     const [orders, setOrders] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -52,20 +49,20 @@ const ManageDevice = () => {
                         <th>Category</th>
                         <th>Date</th>
                         <th>Price</th>
-                        <th>Status</th>
+                        <th>Status</th> {/* New column for status */}
                     </tr>
                     </thead>
                     <tbody>
                     {orders.map(order => (
                         <tr key={order.device_id}>
-                            <td>{order.staff_id}</td>
+                            <td>{order._id}</td>
                             <td>{order.device_id}</td>
                             <td>{order.user_id}</td>
                             <td>{order.device_type}</td>
-                            <td>{order.category}</td>
+                            <td>{order.classification}</td>
                             <td>{order.date}</td>
                             <td>{order.price}</td>
-                            <td>{order.status}</td>
+                            <td>{order.status}</td> {/* Display device status */}
                         </tr>
                     ))}
                     </tbody>
@@ -74,4 +71,5 @@ const ManageDevice = () => {
         </div>
     );
 };
+
 export default ManageDevice;
