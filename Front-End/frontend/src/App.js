@@ -9,14 +9,11 @@ import ProfilePage from "./screens/profile/profile";
 import EditOrder from "./screens/customer-portal/editorder/editorder";
 import AdminStaffPage from "./screens/adminstaffpage/adminstaffpage";
 import AdminOrderPage from "./screens/adminorderpage/adminorderpage";
-import Sdashboard from "./screens/staffdashboard/StaffDashboard/sdashboard";
+import Sdashboard from "./screens/staffdashboard/sdashboard";
 import AdminDashboard from './screens/admindashboard/admindashboard';
 import AdminUsers from './screens/adminuserspage/adminusers';
-import StaffInfo from "./screens/staffdashboard/StaffInfoPage/staffinfo";
-import UserInfo from "./screens/staffdashboard/UserInfoPage/userinfo";
-import ManageDevice from "./screens/staffdashboard/DeviceManagement/managedevice";
-import AddStaff from "./screens/staffdashboard/StaffInfoPage/AddStaff/addstaff";
-import AddUser from "./screens/staffdashboard/UserInfoPage/AddUser/adduser";
+import StaffInfo from "./screens/staffdashboard/staffinfo";
+import UserInfo from "./screens/staffdashboard/userinfo";
 import {Orders} from "./screens/Order/orders";
 import AdminDashboardDrawer from './screens/admindashboard/admindashboarddrawer';
 import AdminStaffDrawer from './screens/adminstaffpage/adminstaffdrawer';
@@ -25,7 +22,6 @@ import AdminUsersDrawer from './screens/adminuserspage/adminusersdrawer';
 import FAQComponent from "./screens/landingpage/faq";
 import OrderSuccess from './components/stripeordersuccess';
 import GoogleLoginSuccess from './components/googleloginsuccess';
-import {FcManager} from "react-icons/fc";
 
 function App() {
     return (
@@ -37,9 +33,6 @@ function App() {
                     <Route path="/sdashboard" element={<Sdashboard/>} />
                     <Route path="/sdashboard/staffinfo" element={<StaffInfo />} />
                     <Route path="/sdashboard/userinfo" element={<UserInfo/>} />
-                    <Route path="/staff/addstaff" element={<AddStaff/>} />
-                    <Route path="/user/adduser" element={<AddUser/>} />
-                    <Route path="/sdashboard/managedevice" element={<ManageDevice/>} />
                     <Route path="/registration" element={<Registration />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/" element={<LandingPage />} />
