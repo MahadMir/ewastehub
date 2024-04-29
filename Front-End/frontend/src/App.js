@@ -26,8 +26,6 @@ import FAQComponent from "./screens/landingpage/faq";
 import OrderSuccess from './components/stripeordersuccess';
 import GoogleLoginSuccess from './components/googleloginsuccess';
 import {FcManager} from "react-icons/fc";
-import ManagePayment from "./screens/staffdashboard/PaymentManagement/managePayment";
-import ManageQR from "./screens/staffdashboard/QRCode/manageQr";
 
 function App() {
     return (
@@ -42,8 +40,6 @@ function App() {
                     <Route path="/staff/addstaff" element={<AddStaff/>} />
                     <Route path="/user/adduser" element={<AddUser/>} />
                     <Route path="/sdashboard/managedevice" element={<ManageDevice/>} />
-                    <Route path="/sdashboard/payment" element={<ManagePayment/>} />
-                    <Route path="/sdashboard/qrcode" element={<ManageQR/>} />
                     <Route path="/registration" element={<Registration />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/" element={<LandingPage />} />

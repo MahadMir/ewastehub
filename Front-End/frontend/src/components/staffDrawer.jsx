@@ -19,11 +19,12 @@ export const StaffDrawer = () => {
                 <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
                 <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
                     {/* Sidebar content here */}
+                    <br/>
                     <li><a href='/sdashboard/staffinfo'>Staff Members</a></li>
+                    <br/>
                     <li><a href='/sdashboard/userinfo'>User Information</a></li>
+                    <br/>
                     <li><a href='/sdashboard/managedevice'>Device Management</a></li>
-                    <li><a href='/sdashboard/qrcode'>QR Code Management</a></li>
-                    <li><a href='/sdashboard/payment'>Payment Management</a></li>
 
                 </ul>
             </div>
